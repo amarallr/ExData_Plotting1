@@ -11,15 +11,16 @@ source("plot1.R")
 ## ============================================================================
 plot4 <- function() {
         
-        par(mfrow = c(2, 2))
         
-        ## png(file=".\\plot4.png")
+        png(file=".\\plot4.png")
+
+        par(mfrow = c(2, 2))
         
         ## Plot 4.1
         with(subset(dsHPC, Global_active_power != '?'), plot(dateTime, as.numeric(paste(Global_active_power)), type ="l", xlab="", ylab="Global Active Power (killowatts)"))
         
         ## Plot 4.2
-        with(subset(dsHPC, Voltage != '?'), plot(dateTime, as.numeric(paste(Voltage)), type ="l", xlab="datetime", ylab="Voltage", col='black'))
+        with(subset(dsHPC, Voltage != '?'), plot(dateTime, as.numeric(paste(Voltage)), type ="l", xlab="datetime", ylab="Voltage", col='black'), axes=FALSE)
         
         ## Plot 4.3
         with(subset(dsHPC, Sub_metering_1 != '?'), plot(dateTime, as.numeric(paste(Sub_metering_1)), type ="l", xlab="", ylab="Energy sub metering", col='black'))
@@ -31,7 +32,7 @@ plot4 <- function() {
         with(subset(dsHPC, Global_reactive_power != '?'), plot(dateTime, as.numeric(paste(Global_reactive_power)), type ="l", xlab="datetime", ylab="Global_reactive_power", col='black'))
         
         
-        dev.copy(png, file=".\\plot4.png")
+        ## dev.copy(png, file=".\\plot4.png")
         
         dev.off()
         
