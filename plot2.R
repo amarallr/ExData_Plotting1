@@ -16,7 +16,7 @@ plot2 <- function() {
         
         png(file=".\\plot2.png")
         
-        with(subset(dsHPC, Global_active_power != '?'), plot(dateTime, as.numeric(Global_active_power), type ="l", xlab="", ylab="Global Active Power (killowatts)"))
+        with(subset(dsHPC, Global_active_power != '?'), plot(dateTime, as.numeric(paste(dsHPC$Global_active_power)), type ="l", xlab="", ylab="Global Active Power (killowatts)"))
                 
         dev.off()
         

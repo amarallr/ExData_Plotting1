@@ -29,6 +29,7 @@ readDatasets <- function() {
         
         dsHPC <<- cbind(dsHPC, dateTime)
         
+
         r <- TRUE
         
         return(r)
@@ -43,7 +44,7 @@ plot1 <- function() {
         
         png(file=".\\plot1.png")
         
-        with(subset(dsHPC, Global_active_power != '?'), hist(as.numeric(Global_active_power), xlab="Global Active Power (killowatts)", col = "red", main="Global Active Power"))
+        with(subset(dsHPC, Global_active_power != '?'), hist(as.numeric(paste(dsHPC$Global_active_power)), xlab="Global Active Power (killowatts)", col = "red", main="Global Active Power"))
         
         dev.off()
 }
