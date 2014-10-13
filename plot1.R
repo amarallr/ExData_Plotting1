@@ -11,24 +11,25 @@ readDatasets <- function() {
         
         r    <- FALSE
         
-        dsHPCComplete   <<- read.csv2(".\\data\\household_power_consumption.txt")
+        if(!exists("dsHPCComplete")) {
+                
+                dsHPCComplete   <<- read.csv2(".\\data\\household_power_consumption.txt")
+                
+        }
+        
+        if(!exists("dsHPC")) {
         
         
-        dsHPC           <<- sqldf("select *
+                dsHPC           <<- sqldf("select *
                                   from    dsHPCComplete
                                   where   Date in ('1/2/2007','2/2/2007')")
+                dateTime <<- paste(dsHPC$Date, dsHPC$Time)
         
+                dateTime <<- strptime(dateTime, "%d/%m/%Y %H:%M:%S")
         
-        ## dsHPC$Date <- as.Date(dsHPC$Date, format="%d/%m/%Y")
+                dsHPC <<- cbind(dsHPC, dateTime)
         
-        ## dsHPC$Time <- strptime(dsHPC$Time, "%H:%M:%S")
-        
-        dateTime <<- paste(dsHPC$Date, dsHPC$Time)
-        
-        dateTime <<- strptime(dateTime, "%d/%m/%Y %H:%M:%S")
-        
-        dsHPC <<- cbind(dsHPC, dateTime)
-        
+        }
 
         r <- TRUE
         
@@ -39,6 +40,8 @@ readDatasets <- function() {
 ## This function plots the histogram.
 ## ============================================================================
 plot1 <- function() {
+        
+        r <-- readDatasets()
         
         par(mfrow = c(1, 1))
         
