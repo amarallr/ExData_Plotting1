@@ -10,6 +10,7 @@ source("plot1.R")
 ## This function plots the line graphic.
 ## ============================================================================
 plot3 <- function() {
+        ## Read the dataset
         r <-- readDatasets()
                 
         par(mfrow = c(1, 1))

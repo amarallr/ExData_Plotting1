@@ -11,14 +11,15 @@ readDatasets <- function() {
         
         r    <- FALSE
         
+        ## Verifies if the dataset has already been read.
         if(!exists("dsHPCComplete")) {
                 
                 dsHPCComplete   <<- read.csv2(".\\data\\household_power_consumption.txt")
                 
         }
         
+        ## Verifies if the dataset has already been read and then filters the rows 1/2/2014 and 2/2/2014.
         if(!exists("dsHPC")) {
-        
         
                 dsHPC           <<- sqldf("select *
                                   from    dsHPCComplete
@@ -41,6 +42,7 @@ readDatasets <- function() {
 ## ============================================================================
 plot1 <- function() {
         
+        ## Read the dataset
         r <-- readDatasets()
         
         par(mfrow = c(1, 1))
